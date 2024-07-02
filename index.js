@@ -40,7 +40,7 @@ const page = "https://www.planetminecraft.com/forums/minecraft/servers/joinable-
             allPosts[parent.parentElement.getAttribute("data-id")] = {
                 username: username,
                 post: {
-                    uploadDate: Date(postTime),
+                    uploadDate: new Date(postTime),
                     content: postMessage
                 }
             };
