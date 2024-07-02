@@ -23,8 +23,8 @@ const page = "https://www.planetminecraft.com/forums/minecraft/servers/joinable-
             const username = parent.getElementsByClassName("member_info membertip ").item(0).getAttribute("href").split("/")[2]
 
             const postTime = parent.getElementsByClassName("timeago").item(0).getAttribute("title");
-            let postMessage = parent.getElementsByClassName("core_read_more").item(0).innerHTML.replace(/<br>*<br>/g, "\n")
-
+            let postMessage = parent.getElementsByClassName("core_read_more").item(0).innerHTML.replace(/<br>/g, "\n")
+            
             // parsing the post message to remove unnecessary tags and add links
             postMessage = postMessage.replace(/<a href="([^"]+)"[^>]*>([^<]+)<\/a>/, (_, url, text) => {
                 url = url.split(" ")[0].trim();
@@ -34,8 +34,8 @@ const page = "https://www.planetminecraft.com/forums/minecraft/servers/joinable-
                 return ` ${text} ( ${url} )`
             });
 
-            // remove all html tags from the post message to make it plain text
-            postMessage = postMessage.replace(/<[^>]+>/g, "");
+            // remove all html tags from the post message to make it plain text ( we put a space or we could do \n wtv tbh )
+            postMessage = postMessage.replace(/<[^>]+>/g, " ");
 
             allPosts[parent.parentElement.getAttribute("data-id")] = {
                 username: username,
